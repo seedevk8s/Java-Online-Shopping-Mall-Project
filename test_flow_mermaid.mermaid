@@ -1,0 +1,111 @@
+flowchart TD
+    START([🚀 테스트 시작]) --> CHOICE{테스트 종류 선택}
+    
+    CHOICE -->|개별 테스트| INDIVIDUAL[🔍 개별 Repository 테스트]
+    CHOICE -->|전체 테스트| ALL[📊 전체 Repository 테스트]
+    CHOICE -->|통합 테스트| INTEGRATION[🎯 통합 시나리오 테스트]
+    
+    %% 개별 테스트 흐름
+    INDIVIDUAL --> USER_TEST[👥 UserRepositoryTest]
+    INDIVIDUAL --> PRODUCT_TEST[🛍️ ProductRepositoryTest]
+    INDIVIDUAL --> CART_TEST[🛒 CartRepositoryTest]
+    
+    USER_TEST --> USER_STEPS[📋 사용자 테스트 단계]
+    USER_STEPS --> USER1[1️⃣ 사용자 저장 테스트]
+    USER1 --> USER2[2️⃣ 사용자 조회 테스트]
+    USER2 --> USER3[3️⃣ 이메일 조회 테스트]
+    USER3 --> USER4[4️⃣ 정보 수정 테스트]
+    USER4 --> USER5[5️⃣ 로그인 테스트]
+    USER5 --> USER6[6️⃣ 통계 조회 테스트]
+    USER6 --> USER7[7️⃣ 사용자 삭제 테스트]
+    
+    PRODUCT_TEST --> PRODUCT_STEPS[📋 상품 테스트 단계]
+    PRODUCT_STEPS --> PROD1[1️⃣ 상품 저장 테스트]
+    PROD1 --> PROD2[2️⃣ 상품 조회 테스트]
+    PROD2 --> PROD3[3️⃣ 상품 검색 테스트]  
+    PROD3 --> PROD4[4️⃣ 재고 업데이트 테스트]
+    PROD4 --> PROD5[5️⃣ 카테고리 검색 테스트]
+    PROD5 --> PROD6[6️⃣ 가격 범위 검색 테스트]
+    PROD6 --> PROD7[7️⃣ 상품 통계 테스트]
+    PROD7 --> PROD8[8️⃣ 상품 삭제 테스트]
+    
+    CART_TEST --> CART_STEPS[📋 장바구니 테스트 단계]
+    CART_STEPS --> CART1[1️⃣ 장바구니 추가 테스트]
+    CART1 --> CART2[2️⃣ 장바구니 조회 테스트]
+    CART2 --> CART3[3️⃣ 수량 변경 테스트]
+    CART3 --> CART4[4️⃣ 상품 제거 테스트]
+    CART4 --> CART5[5️⃣ 장바구니 비우기 테스트]
+    CART5 --> CART6[6️⃣ 통계 조회 테스트]
+    
+    %% 전체 테스트 흐름
+    ALL --> RUNNER[🏃 TestRunner 실행]
+    RUNNER --> RUN_USER[👥 UserRepositoryTest 실행]
+    RUN_USER --> RUN_PRODUCT[🛍️ ProductRepositoryTest 실행]
+    RUN_PRODUCT --> RUN_CART[🛒 CartRepositoryTest 실행]
+    
+    %% 통합 테스트 흐름
+    INTEGRATION --> INT_STEPS[📋 통합 테스트 시나리오]
+    INT_STEPS --> INT1[1️⃣ 사용자 등록 시나리오]
+    INT1 --> INT1A[회원가입]
+    INT1A --> INT1B[로그인 확인]
+    
+    INT1B --> INT2[2️⃣ 쇼핑 시나리오]
+    INT2 --> INT2A[상품 목록 조회]
+    INT2A --> INT2B[장바구니에 상품 추가]
+    INT2B --> INT2C[장바구니 확인]
+    
+    INT2C --> INT3[3️⃣ 주문 시나리오]
+    INT3 --> INT3A[주문 생성]
+    INT3A --> INT3B[주문 저장]
+    INT3B --> INT3C[주문 확인]
+    INT3C --> INT3D[장바구니 비우기]
+    
+    INT3D --> CLEANUP[🧹 테스트 데이터 정리]
+    
+    %% 결과 처리
+    USER7 --> SUCCESS1[✅ 개별 테스트 성공]
+    PROD8 --> SUCCESS1
+    CART6 --> SUCCESS1
+    
+    RUN_CART --> SUCCESS2[✅ 전체 테스트 성공]
+    
+    CLEANUP --> SUCCESS3[✅ 통합 테스트 성공]
+    
+    SUCCESS1 --> RESULT{테스트 결과}
+    SUCCESS2 --> RESULT
+    SUCCESS3 --> RESULT
+    
+    RESULT -->|성공| PASS[🎉 Repository 계층 완성!]
+    RESULT -->|실패| FAIL[❌ 오류 수정 필요]
+    
+    FAIL --> DEBUG[🔧 디버깅]
+    DEBUG --> ERROR_CHECK[📋 오류 메시지 확인]
+    ERROR_CHECK --> FIX[🛠️ 코드 수정]
+    FIX --> RETEST[🔄 테스트 재실행]
+    RETEST --> CHOICE
+    
+    PASS --> DATA_CHECK[📂 데이터 파일 확인]
+    DATA_CHECK --> DATA1[📄 users.txt 생성됨]
+    DATA_CHECK --> DATA2[📄 products.txt 생성됨]
+    DATA_CHECK --> DATA3[📄 orders.txt 생성됨]
+    DATA_CHECK --> DATA4[📄 order_items.txt 생성됨]
+    DATA_CHECK --> DATA5[📄 cart_items.txt 생성됨]
+    
+    DATA1 --> NEXT[🚀 다음 단계: Service 계층]
+    DATA2 --> NEXT
+    DATA3 --> NEXT
+    DATA4 --> NEXT
+    DATA5 --> NEXT
+    
+    %% 스타일 정의
+    classDef successClass fill:#27ae60,stroke:#27ae60,color:#fff
+    classDef errorClass fill:#e74c3c,stroke:#e74c3c,color:#fff
+    classDef processClass fill:#3498db,stroke:#3498db,color:#fff
+    classDef testClass fill:#8e44ad,stroke:#8e44ad,color:#fff
+    classDef dataClass fill:#f39c12,stroke:#f39c12,color:#fff
+    
+    class SUCCESS1,SUCCESS2,SUCCESS3,PASS successClass
+    class FAIL,DEBUG,ERROR_CHECK,FIX errorClass
+    class USER_TEST,PRODUCT_TEST,CART_TEST,INTEGRATION testClass
+    class DATA1,DATA2,DATA3,DATA4,DATA5,DATA_CHECK dataClass
+    class RUNNER,INT_STEPS,USER_STEPS,PRODUCT_STEPS,CART_STEPS processClass
