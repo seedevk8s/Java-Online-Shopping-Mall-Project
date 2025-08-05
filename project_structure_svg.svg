@@ -1,0 +1,149 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill: #2c3e50; }
+      .step-title { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #34495e; }
+      .file-name { font-family: monospace; font-size: 12px; fill: #2c3e50; }
+      .test-name { font-family: monospace; font-size: 11px; fill: #8e44ad; }
+      .description { font-family: Arial, sans-serif; font-size: 10px; fill: #7f8c8d; }
+      .completed { fill: #27ae60; stroke: #27ae60; }
+      .in-progress { fill: #f39c12; stroke: #f39c12; }
+      .pending { fill: #95a5a6; stroke: #95a5a6; }
+      .step-box { fill: #ecf0f1; stroke: #bdc3c7; stroke-width: 2; }
+      .test-box { fill: #e8f5e8; stroke: #27ae60; stroke-width: 1; stroke-dasharray: 5,5; }
+    </style>
+  </defs>
+  
+  <!-- Title -->
+  <text x="600" y="30" text-anchor="middle" class="title">온라인 쇼핑몰 프로젝트 - 단계별 진행 현황</text>
+  
+  <!-- Step 1: Domain Models -->
+  <rect x="50" y="60" width="220" height="120" class="step-box completed" rx="5"/>
+  <text x="160" y="80" text-anchor="middle" class="step-title">✅ 1단계: 도메인 모델</text>
+  
+  <text x="60" y="100" class="file-name">📁 User.java</text>
+  <text x="60" y="115" class="file-name">📁 Product.java</text>
+  <text x="60" y="130" class="file-name">📁 Order.java</text>
+  <text x="60" y="145" class="file-name">📁 OrderItem.java</text>
+  <text x="60" y="160" class="file-name">📁 Cart.java, CartItem.java</text>
+  
+  <text x="60" y="175" class="description">+ 7개 예외 클래스</text>
+  
+  <!-- Step 2-1: Utilities -->
+  <rect x="300" y="60" width="220" height="120" class="step-box completed" rx="5"/>
+  <text x="410" y="80" text-anchor="middle" class="step-title">✅ 2-1단계: 유틸리티</text>
+  
+  <text x="310" y="100" class="file-name">📁 BaseRepository.java</text>
+  <text x="310" y="115" class="file-name">📁 FileManager.java</text>
+  <text x="310" y="130" class="file-name">📁 Constants.java</text>
+  <text x="310" y="145" class="file-name">📁 InputValidator.java</text>
+  
+  <!-- Step 2-2: User & Product Repository -->
+  <rect x="550" y="60" width="220" height="120" class="step-box completed" rx="5"/>
+  <text x="660" y="80" text-anchor="middle" class="step-title">✅ 2-2단계: Repository</text>
+  
+  <text x="560" y="100" class="file-name">📁 UserRepository.java</text>
+  <text x="560" y="115" class="file-name">📁 ProductRepository.java</text>
+  
+  <!-- Test for 2-2 -->
+  <rect x="560" y="135" width="200" height="40" class="test-box" rx="3"/>
+  <text x="570" y="150" class="test-name">🧪 UserRepositoryTest.java</text>
+  <text x="570" y="165" class="test-name">🧪 ProductRepositoryTest.java</text>
+  
+  <!-- Step 2-3: Order & Cart Repository -->
+  <rect x="800" y="60" width="220" height="120" class="step-box completed" rx="5"/>
+  <text x="910" y="80" text-anchor="middle" class="step-title">✅ 2-3단계: Repository</text>
+  
+  <text x="810" y="100" class="file-name">📁 OrderRepository.java</text>
+  <text x="810" y="115" class="file-name">📁 OrderItemRepository.java</text>
+  <text x="810" y="130" class="file-name">📁 CartRepository.java</text>
+  
+  <!-- Test for 2-3 -->
+  <rect x="810" y="145" width="200" height="30" class="test-box" rx="3"/>
+  <text x="820" y="160" class="test-name">🧪 CartRepositoryTest.java</text>
+  
+  <!-- Overall Tests -->
+  <rect x="300" y="200" width="470" height="70" class="test-box" rx="5"/>
+  <text x="535" y="220" text-anchor="middle" class="step-title">🧪 전체 테스트</text>
+  <text x="310" y="240" class="test-name">📋 TestRunner.java - 모든 Repository 테스트 실행</text>
+  <text x="310" y="255" class="test-name">📋 RepositoryIntegrationTest.java - 통합 시나리오 테스트</text>
+  
+  <!-- Step 3: Service Layer (In Progress) -->
+  <rect x="50" y="300" width="220" height="120" class="step-box in-progress" rx="5"/>
+  <text x="160" y="320" text-anchor="middle" class="step-title">🔄 3단계: Service 계층</text>
+  
+  <text x="60" y="340" class="file-name">📁 UserService.java</text>
+  <text x="60" y="355" class="file-name">📁 ProductService.java</text>
+  <text x="60" y="370" class="file-name">📁 OrderService.java</text>
+  <text x="60" y="385" class="file-name">📁 CartService.java</text>
+  <text x="60" y="400" class="description">비즈니스 로직 처리</text>
+  
+  <!-- Step 4: Controller & View (Pending) -->
+  <rect x="300" y="300" width="220" height="120" class="step-box pending" rx="5"/>
+  <text x="410" y="320" text-anchor="middle" class="step-title">⏳ 4단계: Controller</text>
+  
+  <text x="310" y="340" class="file-name">📁 UserController.java</text>
+  <text x="310" y="355" class="file-name">📁 ProductController.java</text>
+  <text x="310" y="370" class="file-name">📁 OrderController.java</text>
+  <text x="310" y="385" class="file-name">📁 ConsoleView.java</text>
+  <text x="310" y="400" class="description">사용자 입력 처리</text>
+  
+  <!-- Step 5: Main Application (Pending) -->
+  <rect x="550" y="300" width="220" height="120" class="step-box pending" rx="5"/>
+  <text x="660" y="320" text-anchor="middle" class="step-title">⏳ 5단계: 메인 앱</text>
+  
+  <text x="560" y="340" class="file-name">📁 Application.java</text>
+  <text x="560" y="355" class="file-name">📁 SessionManager.java</text>
+  <text x="560" y="370" class="file-name">📁 MenuManager.java</text>
+  <text x="560" y="385" class="description">전체 애플리케이션 통합</text>
+  
+  <!-- Data Directory -->
+  <rect x="800" y="300" width="150" height="120" class="step-box completed" rx="5"/>
+  <text x="875" y="320" text-anchor="middle" class="step-title">📂 데이터 폴더</text>
+  
+  <text x="810" y="340" class="file-name">📄 users.txt</text>
+  <text x="810" y="355" class="file-name">📄 products.txt</text>
+  <text x="810" y="370" class="file-name">📄 orders.txt</text>
+  <text x="810" y="385" class="file-name">📄 order_items.txt</text>
+  <text x="810" y="400" class="file-name">📄 cart_items.txt</text>
+  
+  <!-- Test Execution Guide -->
+  <rect x="50" y="450" width="900" height="180" class="step-box" rx="5"/>
+  <text x="500" y="470" text-anchor="middle" class="step-title">🧪 테스트 실행 가이드</text>
+  
+  <text x="70" y="495" class="step-title">1️⃣ 개별 테스트 (각 Repository 단독 테스트)</text>
+  <text x="80" y="510" class="test-name">java javaproject.test.UserRepositoryTest</text>
+  <text x="80" y="525" class="test-name">java javaproject.test.ProductRepositoryTest</text>
+  <text x="80" y="540" class="test-name">java javaproject.test.CartRepositoryTest</text>
+  
+  <text x="500" y="495" class="step-title">2️⃣ 전체 테스트 (모든 Repository 한번에)</text>
+  <text x="510" y="510" class="test-name">java javaproject.test.TestRunner</text>
+  <text x="510" y="525" class="description">→ 위 3개 테스트를 순차적으로 실행</text>
+  
+  <text x="70" y="565" class="step-title">3️⃣ 통합 테스트 (실제 쇼핑 시나리오)</text>
+  <text x="80" y="580" class="test-name">java javaproject.test.RepositoryIntegrationTest</text>
+  <text x="80" y="595" class="description">→ 회원가입 → 상품조회 → 장바구니 → 주문 전체 흐름</text>
+  
+  <text x="500" y="565" class="step-title">4️⃣ 테스트 결과 확인</text>
+  <text x="510" y="580" class="description">✅ 모든 테스트 통과 시: Repository 계층 완성</text>
+  <text x="510" y="595" class="description">❌ 테스트 실패 시: 오류 메시지 확인 후 수정</text>
+  <text x="510" y="610" class="description">📊 통계 정보: 사용자/상품/주문/장바구니 현황</text>
+  
+  <!-- Progress Bar -->
+  <rect x="50" y="660" width="900" height="30" fill="#ecf0f1" stroke="#bdc3c7" rx="15"/>
+  <rect x="50" y="660" width="540" height="30" fill="#27ae60" rx="15"/>
+  <text x="500" y="680" text-anchor="middle" class="step-title" fill="white">진행률: 60% (2단계 완료, 3단계 진행 중)</text>
+  
+  <!-- Legend -->
+  <rect x="50" y="720" width="20" height="20" class="completed" rx="3"/>
+  <text x="80" y="735" class="description">완료된 단계</text>
+  
+  <rect x="200" y="720" width="20" height="20" class="in-progress" rx="3"/>
+  <text x="230" y="735" class="description">진행 중인 단계</text>
+  
+  <rect x="350" y="720" width="20" height="20" class="pending" rx="3"/>
+  <text x="380" y="735" class="description">예정된 단계</text>
+  
+  <rect x="500" y="720" width="20" height="20" class="test-box" rx="3"/>
+  <text x="530" y="735" class="description">테스트 파일</text>
+</svg>
