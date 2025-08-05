@@ -1,0 +1,293 @@
+<svg width="1400" height="900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .package-title { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #2c3e50; }
+      .class-name { font-family: monospace; font-size: 11px; fill: #2c3e50; }
+      .method-name { font-family: monospace; font-size: 9px; fill: #7f8c8d; }
+      .interface-name { font-family: monospace; font-size: 11px; fill: #8e44ad; font-style: italic; }
+      .enum-name { font-family: monospace; font-size: 11px; fill: #e67e22; }
+      
+      .domain-package { fill: #e8f5e9; stroke: #4caf50; stroke-width: 2; }
+      .repository-package { fill: #e3f2fd; stroke: #2196f3; stroke-width: 2; }
+      .util-package { fill: #fff3e0; stroke: #ff9800; stroke-width: 2; }
+      .exception-package { fill: #ffebee; stroke: #f44336; stroke-width: 2; }
+      .test-package { fill: #f3e5f5; stroke: #9c27b0; stroke-width: 2; }
+      
+      .class-box { fill: white; stroke: #34495e; stroke-width: 1; }
+      .interface-box { fill: #f8f9fa; stroke: #8e44ad; stroke-width: 1; stroke-dasharray: 5,5; }
+      .enum-box { fill: #fef9e7; stroke: #e67e22; stroke-width: 1; }
+      .exception-box { fill: #fdf2f2; stroke: #f44336; stroke-width: 1; }
+      
+      .arrow { stroke: #34495e; stroke-width: 1; fill: none; marker-end: url(#arrowhead); }
+      .dashed-arrow { stroke: #7f8c8d; stroke-width: 1; fill: none; stroke-dasharray: 5,5; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34495e"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="700" y="25" text-anchor="middle" class="package-title" style="font-size: 18px;">🏗️ 온라인 쇼핑몰 - 클래스 구조도 (현재까지 구현)</text>
+  
+  <!-- Domain Package -->
+  <rect x="50" y="50" width="350" height="280" class="domain-package" rx="10"/>
+  <text x="60" y="70" class="package-title">📦 javaproject.domain (도메인 모델)</text>
+  
+  <!-- User Class -->
+  <rect x="60" y="80" width="100" height="80" class="class-box" rx="3"/>
+  <text x="110" y="95" text-anchor="middle" class="class-name">User</text>
+  <text x="65" y="108" class="method-name">-userId: String</text>
+  <text x="65" y="118" class="method-name">-password: String</text>
+  <text x="65" y="128" class="method-name">-name: String</text>
+  <text x="65" y="138" class="method-name">-email: String</text>
+  <text x="65" y="148" class="method-name">-isAdmin: boolean</text>
+  
+  <!-- Product Class -->
+  <rect x="170" y="80" width="100" height="80" class="class-box" rx="3"/>
+  <text x="220" y="95" text-anchor="middle" class="class-name">Product</text>
+  <text x="175" y="108" class="method-name">-productId: String</text>
+  <text x="175" y="118" class="method-name">-name: String</text>
+  <text x="175" y="128" class="method-name">-price: int</text>
+  <text x="175" y="138" class="method-name">-category: String</text>
+  <text x="175" y="148" class="method-name">-stock: int</text>
+  
+  <!-- Order Class -->
+  <rect x="280" y="80" width="100" height="80" class="class-box" rx="3"/>
+  <text x="330" y="95" text-anchor="middle" class="class-name">Order</text>
+  <text x="285" y="108" class="method-name">-orderId: String</text>
+  <text x="285" y="118" class="method-name">-userId: String</text>
+  <text x="285" y="128" class="method-name">-totalAmount: int</text>
+  <text x="285" y="138" class="method-name">-status: OrderStatus</text>
+  <text x="285" y="148" class="method-name">-orderDate: LocalDateTime</text>
+  
+  <!-- OrderItem Class -->
+  <rect x="60" y="170" width="100" height="70" class="class-box" rx="3"/>
+  <text x="110" y="185" text-anchor="middle" class="class-name">OrderItem</text>
+  <text x="65" y="198" class="method-name">-orderId: String</text>
+  <text x="65" y="208" class="method-name">-productId: String</text>
+  <text x="65" y="218" class="method-name">-quantity: int</text>
+  <text x="65" y="228" class="method-name">-productPrice: int</text>
+  
+  <!-- Cart Class -->
+  <rect x="170" y="170" width="100" height="70" class="class-box" rx="3"/>
+  <text x="220" y="185" text-anchor="middle" class="class-name">Cart</text>
+  <text x="175" y="198" class="method-name">-userId: String</text>
+  <text x="175" y="208" class="method-name">-items: List&lt;CartItem&gt;</text>
+  <text x="175" y="218" class="method-name">+addItem()</text>
+  <text x="175" y="228" class="method-name">+removeItem()</text>
+  
+  <!-- CartItem Class -->
+  <rect x="280" y="170" width="100" height="70" class="class-box" rx="3"/>
+  <text x="330" y="185" text-anchor="middle" class="class-name">CartItem</text>
+  <text x="285" y="198" class="method-name">-productId: String</text>
+  <text x="285" y="208" class="method-name">-quantity: int</text>
+  <text x="285" y="218" class="method-name">-product: Product</text>
+  
+  <!-- OrderStatus Enum -->
+  <rect x="60" y="250" width="100" height="70" class="enum-box" rx="3"/>
+  <text x="110" y="265" text-anchor="middle" class="enum-name">&lt;&lt;enum&gt;&gt;</text>
+  <text x="110" y="278" text-anchor="middle" class="enum-name">OrderStatus</text>
+  <text x="65" y="291" class="method-name">PENDING</text>
+  <text x="65" y="301" class="method-name">CONFIRMED</text>
+  <text x="65" y="311" class="method-name">CANCELLED</text>
+  
+  <!-- Repository Package -->
+  <rect x="450" y="50" width="400" height="280" class="repository-package" rx="10"/>
+  <text x="460" y="70" class="package-title">📦 javaproject.repository (데이터 접근)</text>
+  
+  <!-- BaseRepository Interface -->
+  <rect x="460" y="80" width="120" height="60" class="interface-box" rx="3"/>
+  <text x="520" y="95" text-anchor="middle" class="interface-name">&lt;&lt;interface&gt;&gt;</text>
+  <text x="520" y="108" text-anchor="middle" class="interface-name">BaseRepository&lt;T,ID&gt;</text>
+  <text x="465" y="121" class="method-name">+save(entity): boolean</text>
+  <text x="465" y="131" class="method-name">+findById(id): Optional&lt;T&gt;</text>
+  
+  <!-- UserRepository -->
+  <rect x="590" y="80" width="120" height="80" class="class-box" rx="3"/>
+  <text x="650" y="95" text-anchor="middle" class="class-name">UserRepository</text>
+  <text x="595" y="108" class="method-name">-instance: static</text>
+  <text x="595" y="118" class="method-name">+getInstance()</text>
+  <text x="595" y="128" class="method-name">+login()</text>
+  <text x="595" y="138" class="method-name">+findByEmail()</text>
+  <text x="595" y="148" class="method-name">+changePassword()</text>
+  
+  <!-- ProductRepository -->
+  <rect x="720" y="80" width="120" height="80" class="class-box" rx="3"/>
+  <text x="780" y="95" text-anchor="middle" class="class-name">ProductRepository</text>
+  <text x="725" y="108" class="method-name">-instance: static</text>
+  <text x="725" y="118" class="method-name">+getInstance()</text>
+  <text x="725" y="128" class="method-name">+findByCategory()</text>
+  <text x="725" y="138" class="method-name">+updateStock()</text>
+  <text x="725" y="148" class="method-name">+searchProducts()</text>
+  
+  <!-- OrderRepository -->
+  <rect x="460" y="170" width="120" height="80" class="class-box" rx="3"/>
+  <text x="520" y="185" text-anchor="middle" class="class-name">OrderRepository</text>
+  <text x="465" y="198" class="method-name">-instance: static</text>
+  <text x="465" y="208" class="method-name">+getInstance()</text>
+  <text x="465" y="218" class="method-name">+findByUserId()</text>
+  <text x="465" y="228" class="method-name">+findByStatus()</text>
+  <text x="465" y="238" class="method-name">+calculateRevenue()</text>
+  
+  <!-- OrderItemRepository -->
+  <rect x="590" y="170" width="120" height="80" class="class-box" rx="3"/>
+  <text x="650" y="185" text-anchor="middle" class="class-name">OrderItemRepository</text>
+  <text x="595" y="198" class="method-name">-instance: static</text>
+  <text x="595" y="208" class="method-name">+getInstance()</text>
+  <text x="595" y="218" class="method-name">+findByOrderId()</text>
+  <text x="595" y="228" class="method-name">+getSalesStatistics()</text>
+  <text x="595" y="238" class="method-name">+getBestSelling()</text>
+  
+  <!-- CartRepository -->
+  <rect x="720" y="170" width="120" height="80" class="class-box" rx="3"/>
+  <text x="780" y="185" text-anchor="middle" class="class-name">CartRepository</text>
+  <text x="725" y="198" class="method-name">-instance: static</text>
+  <text x="725" y="208" class="method-name">+getInstance()</text>
+  <text x="725" y="218" class="method-name">+getCart()</text>
+  <text x="725" y="228" class="method-name">+addToCart()</text>
+  <text x="725" y="238" class="method-name">+updateQuantity()</text>
+  
+  <!-- Utility Package -->
+  <rect x="900" y="50" width="250" height="280" class="util-package" rx="10"/>
+  <text x="910" y="70" class="package-title">📦 javaproject.util (유틸리티)</text>
+  
+  <!-- FileManager -->
+  <rect x="910" y="80" width="110" height="80" class="class-box" rx="3"/>
+  <text x="965" y="95" text-anchor="middle" class="class-name">FileManager</text>
+  <text x="915" y="108" class="method-name">+writeLines()</text>
+  <text x="915" y="118" class="method-name">+readLines()</text>
+  <text x="915" y="128" class="method-name">+appendLine()</text>
+  <text x="915" y="138" class="method-name">+fileExists()</text>
+  <text x="915" y="148" class="method-name">+backupFile()</text>
+  
+  <!-- Constants -->
+  <rect x="1030" y="80" width="110" height="80" class="class-box" rx="3"/>
+  <text x="1085" y="95" text-anchor="middle" class="class-name">Constants</text>
+  <text x="1035" y="108" class="method-name">+USER_DATA_FILE</text>
+  <text x="1035" y="118" class="method-name">+PRODUCT_DATA_FILE</text>
+  <text x="1035" y="128" class="method-name">+MIN_PASSWORD_LENGTH</text>
+  <text x="1035" y="138" class="method-name">+MAX_CART_ITEMS</text>
+  
+  <!-- InputValidator -->
+  <rect x="910" y="170" width="110" height="80" class="class-box" rx="3"/>
+  <text x="965" y="185" text-anchor="middle" class="class-name">InputValidator</text>
+  <text x="915" y="198" class="method-name">+isValidUserId()</text>
+  <text x="915" y="208" class="method-name">+isValidEmail()</text>
+  <text x="915" y="218" class="method-name">+isValidPassword()</text>
+  <text x="915" y="228" class="method-name">+validateUserReg()</text>
+  
+  <!-- ValidationResult -->
+  <rect x="1030" y="170" width="110" height="80" class="class-box" rx="3"/>
+  <text x="1085" y="185" text-anchor="middle" class="class-name">ValidationResult</text>
+  <text x="1035" y="198" class="method-name">-errors: List</text>
+  <text x="1035" y="208" class="method-name">-valid: boolean</text>
+  <text x="1035" y="218" class="method-name">+addError()</text>
+  <text x="1035" y="228" class="method-name">+isValid()</text>
+  
+  <!-- Exception Package -->
+  <rect x="50" y="350" width="550" height="180" class="exception-package" rx="10"/>
+  <text x="60" y="370" class="package-title">📦 javaproject.exception (예외 처리)</text>
+  
+  <!-- Exception Classes -->
+  <rect x="60" y="380" width="120" height="40" class="exception-box" rx="3"/>
+  <text x="120" y="395" text-anchor="middle" class="class-name">UserNotFoundException</text>
+  <text x="65" y="408" class="method-name">+UserNotFoundException()</text>
+  
+  <rect x="190" y="380" width="120" height="40" class="exception-box" rx="3"/>
+  <text x="250" y="395" text-anchor="middle" class="class-name">ProductNotFoundException</text>
+  <text x="195" y="408" class="method-name">+ProductNotFoundException()</text>
+  
+  <rect x="320" y="380" width="130" height="40" class="exception-box" rx="3"/>
+  <text x="385" y="395" text-anchor="middle" class="class-name">InsufficientStockException</text>
+  <text x="325" y="408" class="method-name">+getShortage()</text>
+  
+  <rect x="460" y="380" width="120" height="40" class="exception-box" rx="3"/>
+  <text x="520" y="395" text-anchor="middle" class="class-name">AuthenticationException</text>
+  <text x="465" y="408" class="method-name">+getUserId()</text>
+  
+  <rect x="60" y="430" width="120" height="40" class="exception-box" rx="3"/>
+  <text x="120" y="445" text-anchor="middle" class="class-name">DuplicateUserException</text>
+  <text x="65" y="458" class="method-name">+getDuplicateUserId()</text>
+  
+  <rect x="190" y="430" width="120" height="40" class="exception-box" rx="3"/>
+  <text x="250" y="445" text-anchor="middle" class="class-name">InvalidInputException</text>
+  <text x="195" y="458" class="method-name">+getFieldName()</text>
+  
+  <rect x="320" y="430" width="120" height="40" class="exception-box" rx="3"/>
+  <text x="380" y="445" text-anchor="middle" class="class-name">FileIOException</text>
+  <text x="325" y="458" class="method-name">+getFilePath()</text>
+  
+  <!-- Test Package -->
+  <rect x="650" y="350" width="500" height="180" class="test-package" rx="10"/>
+  <text x="660" y="370" class="package-title">📦 javaproject.test (테스트)</text>
+  
+  <!-- Test Classes -->
+  <rect x="660" y="380" width="130" height="40" class="class-box" rx="3"/>
+  <text x="725" y="395" text-anchor="middle" class="class-name">UserRepositoryTest</text>
+  <text x="665" y="408" class="method-name">+runAllTests()</text>
+  
+  <rect x="800" y="380" width="130" height="40" class="class-box" rx="3"/>
+  <text x="865" y="395" text-anchor="middle" class="class-name">ProductRepositoryTest</text>
+  <text x="805" y="408" class="method-name">+runAllTests()</text>
+  
+  <rect x="940" y="380" width="130" height="40" class="class-box" rx="3"/>
+  <text x="1005" y="395" text-anchor="middle" class="class-name">CartRepositoryTest</text>
+  <text x="945" y="408" class="method-name">+runAllTests()</text>
+  
+  <rect x="660" y="430" width="130" height="40" class="class-box" rx="3"/>
+  <text x="725" y="445" text-anchor="middle" class="class-name">TestRunner</text>
+  <text x="665" y="458" class="method-name">+main()</text>
+  
+  <rect x="800" y="430" width="140" height="40" class="class-box" rx="3"/>
+  <text x="870" y="445" text-anchor="middle" class="class-name">RepositoryIntegrationTest</text>
+  <text x="805" y="458" class="method-name">+runIntegrationTest()</text>
+  
+  <!-- Data Files -->
+  <rect x="1200" y="350" width="180" height="180" class="util-package" rx="10"/>
+  <text x="1210" y="370" class="package-title">📂 data/ (데이터 파일)</text>
+  
+  <rect x="1210" y="380" width="90" height="25" class="class-box" rx="2"/>
+  <text x="1255" y="396" text-anchor="middle" class="method-name">users.txt</text>
+  
+  <rect x="1210" y="410" width="90" height="25" class="class-box" rx="2"/>
+  <text x="1255" y="426" text-anchor="middle" class="method-name">products.txt</text>
+  
+  <rect x="1210" y="440" width="90" height="25" class="class-box" rx="2"/>
+  <text x="1255" y="456" text-anchor="middle" class="method-name">orders.txt</text>
+  
+  <rect x="1210" y="470" width="90" height="25" class="class-box" rx="2"/>
+  <text x="1255" y="486" text-anchor="middle" class="method-name">order_items.txt</text>
+  
+  <rect x="1310" y="380" width="90" height="25" class="class-box" rx="2"/>
+  <text x="1355" y="396" text-anchor="middle" class="method-name">cart_items.txt</text>
+  
+  <!-- Relationships -->
+  <!-- Repository implements BaseRepository -->
+  <line x1="580" y1="120" x2="650" y2="120" class="dashed-arrow"/>
+  <line x1="580" y1="120" x2="780" y2="120" class="dashed-arrow"/>
+  <line x1="520" y1="140" x2="520" y2="170" class="dashed-arrow"/>
+  
+  <!-- Repository uses FileManager -->
+  <line x1="840" y1="120" x2="910" y2="120" class="dashed-arrow"/>
+  
+  <!-- Domain relationships -->
+  <line x1="330" y1="160" x2="330" y2="170" class="arrow"/>
+  <line x1="220" y1="160" x2="220" y2="170" class="arrow"/>
+  <line x1="160" y1="240" x2="160" y2="250" class="arrow"/>
+  
+  <!-- Statistics -->
+  <rect x="50" y="560" width="1330" height="120" style="fill:#f8f9fa;stroke:#dee2e6;stroke-width:1;" rx="5"/>
+  <text x="715" y="580" text-anchor="middle" class="package-title">📊 구현 현황 통계</text>
+  
+  <text x="70" y="600" class="class-name">🏗️ 도메인 모델: 6개 클래스 + 1개 열거형</text>
+  <text x="70" y="615" class="class-name">🗂️ Repository: 4개 구현체 + 1개 인터페이스</text>
+  <text x="70" y="630" class="class-name">🔧 유틸리티: 4개 클래스</text>
+  <text x="70" y="645" class="class-name">⚠️ 예외 처리: 7개 커스텀 예외</text>
+  <text x="70" y="660" class="class-name">🧪 테스트: 5개 테스트 클래스</text>
+  
+  <text x="700" y="600" class="class-name">📁 총 파일 수: 27개</text>
+  <text x="700" y="615" class="class-name">📊 코드 라인 수: 약 3,000줄</text>
+  <text x="700" y="630" class="class-name">🎯 완성도: 60% (Repository 계층 완료)</text>
+  <text x="700" y="645" class="class-name">🔄 다음 단계: Service 계층 (4개 클래스)</text>
+  <text x="700" y="660" class="class-name">📂 데이터 파일: 5개 (.txt 형식)</text>
+</svg>
