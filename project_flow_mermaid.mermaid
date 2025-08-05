@@ -1,0 +1,87 @@
+graph TD
+    A[🎯 온라인 쇼핑몰 프로젝트] --> B[📋 1단계: 도메인 모델]
+    
+    B --> B1[👤 User.java]
+    B --> B2[🛍️ Product.java] 
+    B --> B3[📦 Order.java + OrderItem.java]
+    B --> B4[🛒 Cart.java + CartItem.java]
+    B --> B5[⚠️ 7개 예외 클래스]
+    
+    B --> C[🔧 2-1단계: 공통 유틸리티]
+    
+    C --> C1[📁 BaseRepository.java]
+    C --> C2[💾 FileManager.java]
+    C --> C3[🔢 Constants.java]
+    C --> C4[✅ InputValidator.java]
+    
+    C --> D[🗂️ 2-2단계: Repository 1차]
+    
+    D --> D1[👥 UserRepository.java]
+    D --> D2[🛍️ ProductRepository.java]
+    D --> D3[🧪 UserRepositoryTest.java]
+    D --> D4[🧪 ProductRepositoryTest.java]
+    
+    D --> E[🗂️ 2-3단계: Repository 2차]
+    
+    E --> E1[📦 OrderRepository.java]
+    E --> E2[📋 OrderItemRepository.java]
+    E --> E3[🛒 CartRepository.java]
+    E --> E4[🧪 CartRepositoryTest.java]
+    
+    D3 --> F[🧪 TestRunner.java]
+    D4 --> F
+    E4 --> F
+    
+    E --> G[🧪 RepositoryIntegrationTest.java]
+    
+    F --> H[🔄 3단계: Service 계층]
+    G --> H
+    
+    H --> H1[👥 UserService.java]
+    H --> H2[🛍️ ProductService.java]
+    H --> H3[📦 OrderService.java]
+    H --> H4[🛒 CartService.java]
+    
+    H --> I[🎮 4단계: Controller 계층]
+    
+    I --> I1[👥 UserController.java]
+    I --> I2[🛍️ ProductController.java]
+    I --> I3[📦 OrderController.java]
+    I --> I4[🖥️ ConsoleView.java]
+    
+    I --> J[🚀 5단계: 메인 애플리케이션]
+    
+    J --> J1[🏃 Application.java]
+    J --> J2[🔐 SessionManager.java]
+    J --> J3[📋 MenuManager.java]
+    
+    %% 데이터 저장소
+    B1 --> DB[(📂 data 폴더)]
+    D1 --> DB
+    E1 --> DB
+    
+    DB --> DB1[📄 users.txt]
+    DB --> DB2[📄 products.txt]
+    DB --> DB3[📄 orders.txt]
+    DB --> DB4[📄 order_items.txt]
+    DB --> DB5[📄 cart_items.txt]
+    
+    %% 완료 상태 표시
+    classDef completed fill:#27ae60,stroke:#27ae60,color:#fff
+    classDef inProgress fill:#f39c12,stroke:#f39c12,color:#fff
+    classDef pending fill:#95a5a6,stroke:#95a5a6,color:#fff
+    classDef test fill:#8e44ad,stroke:#8e44ad,color:#fff
+    classDef data fill:#3498db,stroke:#3498db,color:#fff
+    
+    class B,B1,B2,B3,B4,B5 completed
+    class C,C1,C2,C3,C4 completed
+    class D,D1,D2,D3,D4 completed
+    class E,E1,E2,E3,E4 completed
+    class F,G completed
+    class DB,DB1,DB2,DB3,DB4,DB5 data
+    
+    class H,H1,H2,H3,H4 inProgress
+    class I,I1,I2,I3,I4 pending
+    class J,J1,J2,J3 pending
+    
+    class D3,D4,E4,F,G test
