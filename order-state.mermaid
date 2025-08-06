@@ -1,0 +1,50 @@
+stateDiagram-v2
+    [*] --> PENDING: 주문 생성
+    
+    PENDING --> CONFIRMED: 결제 완료
+    PENDING --> CANCELLED: 고객 취소
+    
+    CONFIRMED --> SHIPPING: 배송 시작
+    CONFIRMED --> CANCELLED: 관리자 취소
+    
+    SHIPPING --> DELIVERED: 배송 완료
+    SHIPPING --> RETURNED: 반품 요청
+    
+    DELIVERED --> RETURNED: 반품 요청 (7일 이내)
+    DELIVERED --> COMPLETED: 구매 확정
+    
+    RETURNED --> REFUNDED: 환불 처리
+    
+    CANCELLED --> [*]: 종료
+    REFUNDED --> [*]: 종료
+    COMPLETED --> [*]: 종료
+    
+    note right of PENDING
+        대기 상태
+        - 결제 대기
+        - 취소 가능
+    end note
+    
+    note right of CONFIRMED
+        확정 상태
+        - 결제 완료
+        - 배송 준비
+    end note
+    
+    note right of SHIPPING
+        배송 중
+        - 추적 가능
+        - 취소 불가
+    end note
+    
+    note left of DELIVERED
+        배송 완료
+        - 수령 확인
+        - 반품 가능 기간
+    end note
+    
+    note left of CANCELLED
+        취소됨
+        - 재고 복구
+        - 환불 처리
+    end note
