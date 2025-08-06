@@ -1,0 +1,134 @@
+classDiagram
+    class User {
+        -String id
+        -String password
+        -String name
+        -String email
+        -String phone
+        -String address
+        -boolean isAdmin
+        -LocalDateTime createdDate
+        -LocalDateTime modifiedDate
+        +User()
+        +getId() String
+        +setPassword(String password)
+        +getName() String
+        +getEmail() String
+        +isAdmin() boolean
+        +validatePassword(String input) boolean
+        +updateModifiedDate()
+        +toString() String
+    }
+
+    class Product {
+        -String id
+        -String name
+        -String category
+        -double price
+        -int stock
+        -String description
+        -LocalDateTime createdDate
+        -LocalDateTime modifiedDate
+        +Product()
+        +getId() String
+        +getName() String
+        +getPrice() double
+        +getStock() int
+        +reduceStock(int quantity)
+        +increaseStock(int quantity)
+        +isAvailable() boolean
+        +toString() String
+    }
+
+    class Order {
+        -String id
+        -String userId
+        -List~OrderItem~ items
+        -OrderStatus status
+        -double totalAmount
+        -String shippingAddress
+        -LocalDateTime orderDate
+        -LocalDateTime modifiedDate
+        +Order()
+        +getId() String
+        +getUserId() String
+        +getItems() List~OrderItem~
+        +addItem(OrderItem item)
+        +removeItem(String itemId)
+        +calculateTotal() double
+        +updateStatus(OrderStatus status)
+        +canCancel() boolean
+        +cancel()
+        +toString() String
+    }
+
+    class OrderItem {
+        -String id
+        -String orderId
+        -String productId
+        -int quantity
+        -double price
+        -double subtotal
+        +OrderItem()
+        +getId() String
+        +getProductId() String
+        +getQuantity() int
+        +getPrice() double
+        +calculateSubtotal() double
+        +toString() String
+    }
+
+    class Cart {
+        -String id
+        -String userId
+        -List~CartItem~ items
+        -LocalDateTime createdDate
+        -LocalDateTime modifiedDate
+        +Cart()
+        +getId() String
+        +getUserId() String
+        +getItems() List~CartItem~
+        +addItem(CartItem item)
+        +removeItem(String productId)
+        +updateQuantity(String productId, int quantity)
+        +clear()
+        +isEmpty() boolean
+        +getTotalAmount() double
+        +getTotalItems() int
+        +toString() String
+    }
+
+    class CartItem {
+        -String productId
+        -Product product
+        -int quantity
+        -LocalDateTime addedDate
+        +CartItem()
+        +getProductId() String
+        +getProduct() Product
+        +getQuantity() int
+        +setQuantity(int quantity)
+        +increaseQuantity(int amount)
+        +decreaseQuantity(int amount)
+        +getSubtotal() double
+        +toString() String
+    }
+
+    class OrderStatus {
+        <<enumeration>>
+        PENDING
+        CONFIRMED
+        SHIPPING
+        DELIVERED
+        CANCELLED
+        +getDescription() String
+        +canTransitionTo(OrderStatus) boolean
+    }
+
+    User "1" --> "0..*" Order : places
+    User "1" --> "1" Cart : has
+    Order "1" --> "1..*" OrderItem : contains
+    Order --> OrderStatus : has status
+    Cart "1" --> "0..*" CartItem : contains
+    OrderItem "*" --> "1" Product : references
+    CartItem "*" --> "1" Product : references
