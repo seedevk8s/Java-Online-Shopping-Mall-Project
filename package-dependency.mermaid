@@ -1,0 +1,111 @@
+graph TD
+    subgraph "javaproject"
+        MAIN[ShoppingMallApplication]
+    end
+    
+    subgraph "javaproject.controller"
+        MC[MainController]
+        UC[UserController]
+        PC[ProductController]
+        OC[OrderController]
+    end
+    
+    subgraph "javaproject.service"
+        US[UserService]
+        PS[ProductService]
+        OS[OrderService]
+        CS[CartService]
+        AS[AuthenticationService]
+    end
+    
+    subgraph "javaproject.repository"
+        BR[BaseRepository]
+        UR[UserRepository]
+        PR[ProductRepository]
+        OR[OrderRepository]
+        CR[CartRepository]
+        OIR[OrderItemRepository]
+    end
+    
+    subgraph "javaproject.domain"
+        USER[User]
+        PRODUCT[Product]
+        ORDER[Order]
+        CART[Cart]
+        ORDERITEM[OrderItem]
+        CARTITEM[CartItem]
+        STATUS[OrderStatus]
+    end
+    
+    subgraph "javaproject.util"
+        FM[FileManager]
+        SM[SessionManager]
+        IV[InputValidator]
+        CONST[Constants]
+    end
+    
+    subgraph "javaproject.exception"
+        UIE[UserNotFoundException]
+        PIE[ProductNotFoundException]
+        OIE[OrderNotFoundException]
+        ISE[InsufficientStockException]
+        ECE[EmptyCartException]
+        DUE[DuplicateUserException]
+        IIE[InvalidInputException]
+    end
+    
+    MAIN --> MC
+    
+    MC --> UC
+    MC --> PC
+    MC --> OC
+    
+    UC --> US
+    UC --> AS
+    PC --> PS
+    OC --> OS
+    OC --> CS
+    
+    US --> UR
+    PS --> PR
+    OS --> OR
+    CS --> CR
+    OS --> OIR
+    
+    UR --> BR
+    PR --> BR
+    OR --> BR
+    CR --> BR
+    OIR --> BR
+    
+    UR --> USER
+    PR --> PRODUCT
+    OR --> ORDER
+    CR --> CART
+    OIR --> ORDERITEM
+    
+    US --> UIE
+    PS --> PIE
+    OS --> OIE
+    PS --> ISE
+    CS --> ECE
+    US --> DUE
+    
+    UC --> SM
+    PC --> SM
+    OC --> SM
+    
+    UC --> IV
+    PC --> IV
+    OC --> IV
+    
+    UR --> FM
+    PR --> FM
+    OR --> FM
+    CR --> FM
+    
+    style MAIN fill:#ff6b6b,stroke:#ff4757,stroke-width:3px,color:#fff
+    style MC fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
+    style UC fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
+    style PC fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
+    style OC fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
