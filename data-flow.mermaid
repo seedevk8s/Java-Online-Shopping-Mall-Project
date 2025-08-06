@@ -1,0 +1,70 @@
+flowchart LR
+    subgraph "External"
+        USER[사용자]
+        ADMIN[관리자]
+    end
+    
+    subgraph "System Boundary"
+        subgraph "Input Processing"
+            IV[입력 검증]
+            AUTH[인증]
+        end
+        
+        subgraph "Core Processing"
+            UM[사용자 관리]
+            PM[상품 관리]
+            CM[장바구니 관리]
+            OM[주문 처리]
+        end
+        
+        subgraph "Data Storage"
+            UF[(users.dat)]
+            PF[(products.dat)]
+            OF[(orders.dat)]
+            CF[(carts.dat)]
+        end
+    end
+    
+    USER -->|입력| IV
+    ADMIN -->|입력| IV
+    
+    IV -->|검증된 입력| AUTH
+    AUTH -->|인증 정보| UM
+    
+    UM -->|사용자 데이터| UF
+    UF -->|저장된 데이터| UM
+    
+    AUTH -->|인증된 요청| PM
+    PM -->|상품 데이터| PF
+    PF -->|저장된 데이터| PM
+    
+    AUTH -->|인증된 요청| CM
+    CM -->|장바구니 데이터| CF
+    CF -->|저장된 데이터| CM
+    
+    CM -->|장바구니 정보| OM
+    PM -->|상품 정보| OM
+    OM -->|주문 데이터| OF
+    OF -->|저장된 데이터| OM
+    
+    UM -->|사용자 정보| USER
+    PM -->|상품 목록| USER
+    CM -->|장바구니 상태| USER
+    OM -->|주문 확인| USER
+    
+    PM -->|재고 정보| ADMIN
+    OM -->|주문 통계| ADMIN
+    UM -->|회원 목록| ADMIN
+
+    style USER fill:#e74c3c,stroke:#c0392b,color:#fff
+    style ADMIN fill:#e74c3c,stroke:#c0392b,color:#fff
+    style IV fill:#3498db,stroke:#2980b9,color:#fff
+    style AUTH fill:#3498db,stroke:#2980b9,color:#fff
+    style UM fill:#2ecc71,stroke:#27ae60,color:#fff
+    style PM fill:#2ecc71,stroke:#27ae60,color:#fff
+    style CM fill:#2ecc71,stroke:#27ae60,color:#fff
+    style OM fill:#2ecc71,stroke:#27ae60,color:#fff
+    style UF fill:#f39c12,stroke:#e67e22,color:#fff
+    style PF fill:#f39c12,stroke:#e67e22,color:#fff
+    style OF fill:#f39c12,stroke:#e67e22,color:#fff
+    style CF fill:#f39c12,stroke:#e67e22,color:#fff
