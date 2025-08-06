@@ -1,0 +1,65 @@
+sequenceDiagram
+    participant User
+    participant OC as OrderController
+    participant OS as OrderService
+    participant CS as CartService
+    participant PS as ProductService
+    participant OR as OrderRepository
+    participant PR as ProductRepository
+    participant CR as CartRepository
+
+    User->>OC: 주문하기 선택
+    OC->>CS: getCart(userId)
+    CS->>CR: findByUserId(userId)
+    CR-->>CS: Cart
+    CS-->>OC: Cart with items
+    
+    alt Cart is empty
+        OC-->>User: "장바구니가 비어있습니다"
+    else Cart has items
+        OC->>User: 장바구니 내용 표시
+        User->>OC: 주문 확인
+        
+        OC->>User: 배송 주소 입력 요청
+        User->>OC: 배송 주소 입력
+        
+        OC->>OS: createOrderFromCart(cart, address)
+        
+        OS->>OS: generateOrderId()
+        OS->>OS: new Order()
+        
+        loop For each cart item
+            OS->>PS: getProductById(productId)
+            PS->>PR: findById(productId)
+            PR-->>PS: Product
+            PS-->>OS: Product
+            
+            OS->>PS: checkStock(productId, quantity)
+            PS-->>OS: boolean
+            
+            alt Stock available
+                OS->>PS: reduceStock(productId, quantity)
+                PS->>PR: update(product)
+                PR-->>PS: updated
+                PS-->>OS: success
+                
+                OS->>OS: createOrderItem()
+                OS->>OS: addItemToOrder()
+            else Stock insufficient
+                OS-->>OC: InsufficientStockException
+                OC-->>User: "재고 부족: [상품명]"
+            end
+        end
+        
+        OS->>OS: calculateTotalAmount()
+        OS->>OR: save(order)
+        OR-->>OS: Order saved
+        
+        OS->>CS: clearCart(userId)
+        CS->>CR: update(emptyCart)
+        CR-->>CS: cleared
+        CS-->>OS: success
+        
+        OS-->>OC: Order created
+        OC-->>User: "주문 완료! 주문번호: [ORD001]"
+    end
