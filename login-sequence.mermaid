@@ -1,0 +1,47 @@
+sequenceDiagram
+    participant User
+    participant UI as Console UI
+    participant MC as MainController
+    participant UC as UserController
+    participant US as UserService
+    participant UR as UserRepository
+    participant SM as SessionManager
+    participant FM as FileManager
+    participant FS as File System
+
+    User->>UI: 로그인 선택
+    UI->>MC: showGuestMenu()
+    MC->>UC: login()
+    UC->>UI: ID 입력 요청
+    User->>UI: ID 입력
+    UC->>UI: 비밀번호 입력 요청
+    User->>UI: 비밀번호 입력
+    
+    UC->>US: authenticate(id, password)
+    US->>UR: findById(id)
+    UR->>FM: loadFromFile("users.dat")
+    FM->>FS: read file
+    FS-->>FM: file data
+    FM-->>UR: List<User>
+    UR-->>US: User object
+    
+    alt User found
+        US->>US: validatePassword(input, stored)
+        alt Password correct
+            US-->>UC: User authenticated
+            UC->>SM: setCurrentUser(user)
+            SM-->>UC: session created
+            UC-->>MC: login success
+            MC->>UI: 환영 메시지 출력
+            UI-->>User: "환영합니다, [사용자명]님!"
+        else Password incorrect
+            US-->>UC: null
+            UC-->>UI: 에러 메시지
+            UI-->>User: "비밀번호가 일치하지 않습니다"
+        end
+    else User not found
+        UR-->>US: null
+        US-->>UC: null
+        UC-->>UI: 에러 메시지
+        UI-->>User: "존재하지 않는 ID입니다"
+    end
