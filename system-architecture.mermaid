@@ -1,0 +1,87 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ff6b6b', 'primaryTextColor':'#fff', 'primaryBorderColor':'#ff4757', 'lineColor':'#5f27cd', 'secondaryColor':'#4834d4', 'tertiaryColor':'#fff'}}}%%
+
+graph TB
+    subgraph "Presentation Layer"
+        UI[Console UI]
+        MC[MainController]
+        UC[UserController]
+        PC[ProductController]
+        OC[OrderController]
+    end
+    
+    subgraph "Business Logic Layer"
+        US[UserService]
+        PS[ProductService]
+        OS[OrderService]
+        CS[CartService]
+        AUTH[AuthenticationService]
+    end
+    
+    subgraph "Data Access Layer"
+        UR[UserRepository]
+        PR[ProductRepository]
+        OR[OrderRepository]
+        CR[CartRepository]
+        OIR[OrderItemRepository]
+    end
+    
+    subgraph "Persistence Layer"
+        FM[FileManager]
+        DAT[(Data Files .dat)]
+    end
+    
+    subgraph "Cross-Cutting Concerns"
+        SM[SessionManager]
+        IV[InputValidator]
+        CONST[Constants]
+        EX[Exception Handler]
+    end
+    
+    UI --> MC
+    MC --> UC
+    MC --> PC
+    MC --> OC
+    
+    UC --> US
+    UC --> AUTH
+    PC --> PS
+    OC --> OS
+    OC --> CS
+    
+    US --> UR
+    PS --> PR
+    OS --> OR
+    CS --> CR
+    OS --> OIR
+    
+    UR --> FM
+    PR --> FM
+    OR --> FM
+    CR --> FM
+    OIR --> FM
+    
+    FM --> DAT
+    
+    UC -.-> SM
+    PC -.-> SM
+    OC -.-> SM
+    
+    UC -.-> IV
+    PC -.-> IV
+    OC -.-> IV
+    
+    US -.-> EX
+    PS -.-> EX
+    OS -.-> EX
+
+    classDef presentation fill:#ff6b6b,stroke:#ff4757,stroke-width:2px,color:#fff
+    classDef business fill:#4834d4,stroke:#3742fa,stroke-width:2px,color:#fff
+    classDef data fill:#00b894,stroke:#00cec9,stroke-width:2px,color:#fff
+    classDef persistence fill:#fdcb6e,stroke:#f39c12,stroke-width:2px,color:#000
+    classDef crosscut fill:#a29bfe,stroke:#6c5ce7,stroke-width:2px,color:#fff
+    
+    class UI,MC,UC,PC,OC presentation
+    class US,PS,OS,CS,AUTH business
+    class UR,PR,OR,CR,OIR data
+    class FM,DAT persistence
+    class SM,IV,CONST,EX crosscut
