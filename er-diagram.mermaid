@@ -1,0 +1,63 @@
+erDiagram
+    USER ||--o{ ORDER : places
+    USER ||--|| CART : has
+    ORDER ||--|{ ORDER_ITEM : contains
+    PRODUCT ||--o{ ORDER_ITEM : "ordered in"
+    PRODUCT ||--o{ CART_ITEM : "added to"
+    CART ||--o{ CART_ITEM : contains
+
+    USER {
+        string id PK
+        string password
+        string name
+        string email UK
+        string phone
+        string address
+        boolean is_admin
+        datetime created_date
+        datetime modified_date
+    }
+
+    PRODUCT {
+        string id PK
+        string name
+        string category
+        double price
+        int stock
+        string description
+        datetime created_date
+        datetime modified_date
+    }
+
+    ORDER {
+        string id PK
+        string user_id FK
+        string status
+        double total_amount
+        string shipping_address
+        datetime order_date
+        datetime modified_date
+    }
+
+    ORDER_ITEM {
+        string id PK
+        string order_id FK
+        string product_id FK
+        int quantity
+        double price
+        double subtotal
+    }
+
+    CART {
+        string id PK
+        string user_id FK
+        datetime created_date
+        datetime modified_date
+    }
+
+    CART_ITEM {
+        string cart_id FK
+        string product_id FK
+        int quantity
+        datetime added_date
+    }
